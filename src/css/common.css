@@ -16,3 +16,38 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer {
+  display: flex;
+  gap: 15px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: center;
+
+}
+
+.value {
+  font-size: 40px;
+}
+
+.btn-color-switcher {
+  padding: 50px 100px;
+  font-weight: 400;
+  font-size: 40px;
+  border-radius: 10px;
+  border-color: white;
+  cursor: pointer;
+}
+
+.align-btn {
+  display: flex;
+  height: 200px;
+
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
