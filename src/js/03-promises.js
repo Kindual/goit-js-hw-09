@@ -3,9 +3,12 @@ const refs = {
   delayEl: document.querySelector('[name=delay]'),
   stepEl: document.querySelector('[name=step]'),
   amountEl: document.querySelector('[name=amount]'),
+  btnGenerate: document.querySelector('[type=submit]')
 }
+console.log(refs.btnGenerate);
 
-refs.formEl.addEventListener('submit', formSubmit)
+refs.formEl.addEventListener('submit', formSubmit);
+
 let counter = 0;
 
 function formSubmit(ev) {
@@ -14,9 +17,7 @@ function formSubmit(ev) {
   delayStep = Number(refs.stepEl.value);
   position = refs.amountEl.value;
 
-  if (counter < 0) {
-    return;
-  }
+  btnDisabled(refs.btnGenerate);
   counter -= position;
 
   if (delay <= 0 || delayStep < 0 || position < 0) {
@@ -28,15 +29,23 @@ function formSubmit(ev) {
     createPromise(i, delay)
       .then(x => {
         console.log(x);
-        counter += 1;
       })
       .catch(y => {
-        console.log(y)
-        counter += 1;
+        console.log(y);
+      })
+      .finally(() => {
+        if(counter + i === 0) {
+          btnDisabled(refs.btnGenerate);
+          counter += i;
+        }
       });
 
     delay += delayStep;
   }
+}
+
+function btnDisabled(btn) {
+  btn.disabled = !btn.disabled;
 }
 
 function createPromise(position, delay) {
