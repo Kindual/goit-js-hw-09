@@ -6,7 +6,7 @@ const refs = {
 }
 
 refs.formEl.addEventListener('submit', formSubmit)
-
+let counter = 0;
 
 function formSubmit(ev) {
   ev.preventDefault();
@@ -14,8 +14,27 @@ function formSubmit(ev) {
   delayStep = Number(refs.stepEl.value);
   position = refs.amountEl.value;
 
+  if (counter < 0) {
+    return;
+  }
+  counter -= position;
+
+  if (delay <= 0 || delayStep < 0 || position < 0) {
+    alert('Заповніть поля корректними значеннями');
+    return
+  }
+
   for (let i = 1; i <= position; i++) {
-    createPromise(i, delay).then(x => console.log(x)).catch(y => console.log(y));
+    createPromise(i, delay)
+      .then(x => {
+        console.log(x);
+        counter += 1;
+      })
+      .catch(y => {
+        console.log(y)
+        counter += 1;
+      });
+
     delay += delayStep;
   }
 }
