@@ -13,9 +13,9 @@ let counter = 0;
 
 function formSubmit(ev) {
   ev.preventDefault();
-  delay = Number(refs.delayEl.value);
-  delayStep = Number(refs.stepEl.value);
-  position = refs.amountEl.value;
+  let delay = Number(refs.delayEl.value);
+  const delayStep = Number(refs.stepEl.value);
+  const position = refs.amountEl.value;
 
   btnDisabled(refs.btnGenerate);
   counter -= position;
@@ -34,7 +34,7 @@ function formSubmit(ev) {
         console.log(y);
       })
       .finally(() => {
-        if(counter + i === 0) {
+        if (counter + i === 0) {
           btnDisabled(refs.btnGenerate);
           counter += i;
         }
